@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python scripts/*)",
+      "Bash(.venv/bin/python -W ignore scripts/*)",
+      "Bash(sqlite3 data/jobs.db*)",
+      "WebSearch",
+      "WebFetch",
+      "Read(./**)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(rm -rf*)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}

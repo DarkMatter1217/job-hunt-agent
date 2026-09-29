@@ -1,0 +1,1096 @@
+# Companies whose job boards the harvester checks every run.
+# tier 1 = LLM/applied-ML intern or co-op roles in Canada open to MSc students (checked live or in the last year)
+# tier 2 = regular AI/ML co-ops or strong AI orgs, but a weaker or less frequent match
+# tier 3 = watch list (adjacent roles, US/India, or rare interns)
+# ats: greenhouse | lever | ashby | smartrecruiters | workable | workday | recruitee -> fetched by scripts/ats_fetch.py
+#      web -> no public API; the web-scout agent visits 
+#  = counts from the 2026-09-28 verification run. web-scout appends newly found boards at the end.
+# web entries: `url` if known, else `search_hint` for web-scout to find the careers page.
+# Built 2026-09-28 from: negarprh/Canadian-Tech-Internships-2027, SimplifyJobs listings (Canada, last year),
+# speedyapply 2027-AI-College-Jobs (international), web research on Ottawa and Canadian AI employers.
+aggregators:
+- name: intern-list.com (Jobright)
+  fetcher: scripts/intern_list.py
+  lists:
+  - ca_ml_ai
+  - ca_swe
+  - us_ml_ai
+  note: Airtable-backed lists, re-read on every run. Rows link to jobright.ai; dedupe merges them with ATS postings.
+- name: Canadian-Tech-Internships-2027
+  url: https://raw.githubusercontent.com/negarprh/Canadian-Tech-Internships-2027/main/README.md
+  fetcher: web-scout
+- name: SimplifyJobs listings
+  url: https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/.github/scripts/listings.json
+  fetcher: web-scout
+- name: speedyapply AI international
+  url: https://raw.githubusercontent.com/speedyapply/2027-AI-College-Jobs/main/INTERN_INTL.md
+  fetcher: web-scout
+- name: Invest Ottawa job board
+  url: https://techjobfinder.investottawa.ca/jobs
+  fetcher: web-scout
+
+companies:
+- name: Bank of Montreal
+  tier: 1
+  city: Toronto
+  why: AI Engineer Winter 2027 co-op live; 18 AI student postings last year incl. AI Research Intern
+  ats: workday
+  token: bmo
+  host: bmo.wd3.myworkdayjobs.com
+  site: Privileged
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - BMO
+  - BMO Financial Group
+- name: Bree
+  tier: 1
+  city: Toronto
+  why: ML Engineering intern live, small team
+  ats: ashby
+  token: bree
+- name: Ciena
+  tier: 1
+  city: Ottawa
+  why: Ottawa HQ; AI Engineer Intern Winter 2027 live (LLM + Python)
+  ats: workday
+  token: ciena
+  host: ciena.wd5.myworkdayjobs.com
+  site: Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Cohere
+  tier: 1
+  city: Toronto/Montreal
+  why: LLM company; ML Intern/Co-op Winter 2027 live (Research Internship needs PhD, skip that one)
+  ats: ashby
+  token: cohere
+- name: Cresta
+  tier: 1
+  city: Toronto
+  why: Conversational AI agents; MLE intern (Master's preferred) and forward-deployed AI agent intern live
+  ats: greenhouse
+  token: cresta
+- name: Electronic Arts
+  tier: 1
+  city: Vancouver/Montreal
+  why: AI Engineer Intern (Summer 2027)
+  ats: web
+  url: https://jobs.ea.com/en_US/careers/Home
+  aliases:
+  - Electronic Arts (EA)
+  - EA
+- name: Equitable Bank
+  tier: 1
+  city: Toronto
+  why: 4 live AI Engineer / data intern roles for Winter 2027
+  ats: lever
+  token: eqbank
+  aliases:
+  - EQ Bank
+- name: Georgian
+  tier: 1
+  city: Toronto
+  why: AI/ML Engineer Intern 2027 wants Master's/PhD students; applied LLM work across portfolio
+  ats: ashby
+  token: georgian
+  aliases:
+  - Georgian Partners Growth
+  - Georgian Partners
+- name: Huawei Canada
+  tier: 1
+  city: Markham/Ottawa/Edmonton
+  why: 46 live co-op/intern roles incl. LLM, agentic AI, RAG-adjacent research; takes grad students; 4-16 month terms
+  ats: recruitee
+  token: huaweicanada
+  aliases:
+  - Huawei
+  - Huawei Technologies Canada
+- name: Human Computer Lab
+  tier: 1
+  city: Toronto
+  why: Software/ML Engineer intern live
+  ats: ashby
+  token: human-computer-lab
+- name: IBM
+  tier: 1
+  city: Toronto/Markham/Ottawa
+  why: Machine Learning Developer Intern and AI & Automation DS intern, Jan 2027 (found on intern-list)
+  ats: web
+  url: https://www.ibm.com/careers/search?q=intern
+- name: Intact
+  tier: 1
+  city: Montreal/Toronto
+  why: AI Developer intern/co-op; 10 AI student postings last year (check French for Quebec roles)
+  ats: workday
+  token: intactfc
+  host: intactfc.wd3.myworkdayjobs.com
+  site: intactfc
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Intact Financial Corporation
+  - Intact Financial
+- name: Kinaxis
+  tier: 1
+  city: Ottawa
+  why: Ottawa HQ; 8 AI co-op postings in the last year (AI Innovation, AI Solutions, AI Quality/Evaluation)
+  ats: icims
+  token: careers-kinaxis
+  queries:
+  - intern
+  - co-op
+- name: Lyft
+  tier: 1
+  city: Toronto
+  why: Software Engineer Intern, Machine Learning (Summer 2027)
+  ats: web
+  url: https://www.lyft.com/careers
+- name: Manulife Financial
+  tier: 1
+  city: Toronto
+  why: 3 live AI co-op/intern roles (4, 12 month, Summer 2027) with LLM + Python
+  ats: workday
+  token: manulife
+  host: manulife.wd3.myworkdayjobs.com
+  site: MFCJH_Jobs
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Manulife
+- name: Royal Bank of Canada
+  tier: 1
+  city: Toronto
+  why: 39 AI/GenAI student postings last year; RBC Borealis ML Research Internship (Winter 2027 deadline Sep 28)
+  ats: workday
+  token: rbc
+  host: rbc.wd3.myworkdayjobs.com
+  site: RBCEARLYTALENT1
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - RBC
+  - RBC Borealis
+  - Borealis AI
+- name: Scotiabank
+  tier: 1
+  city: Toronto
+  why: Velocity AI Engineer and Data Scientist co-ops, Winter 2027 (found on intern-list)
+  ats: web
+  url: https://jobs.scotiabank.com/
+  aliases:
+  - Bank of Nova Scotia
+  - The Bank of Nova Scotia
+- name: ServiceNow
+  tier: 1
+  city: Montreal/Toronto
+  why: ServiceNow AI Research (ex Element AI) applied research interns, document intelligence
+  ats: smartrecruiters
+  token: ServiceNow
+- name: Shopify
+  tier: 1
+  city: Ottawa/remote Canada
+  why: Applied ML Engineering Internships Winter 2027; Ottawa-founded, remote-first
+  ats: web
+  url: https://www.shopify.com/careers
+- name: ShyftLabs
+  tier: 1
+  city: Toronto
+  why: AI Engineer Intern live
+  ats: lever
+  token: shyftlabs
+- name: TD Bank
+  tier: 1
+  city: Toronto
+  why: Layer 6 AI; AI2 Applied ML Scientist co-op Winter 2027; 11 AI student postings last year
+  ats: workday
+  token: td
+  host: td.wd3.myworkdayjobs.com
+  site: TD_Bank_Careers
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - TD
+  - TD Bank Group
+  - Layer 6 AI
+  - Layer 6
+- name: Thomson Reuters
+  tier: 1
+  city: Toronto
+  why: Applied Research Intern NLP/ML/GenAI (TR Labs); legal AI
+  ats: workday
+  token: thomsonreuters
+  host: thomsonreuters.wd5.myworkdayjobs.com
+  site: External_Career_Site
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Thomson Reuters Labs
+- name: Vector Institute
+  tier: 1
+  city: Toronto
+  why: Canada's AI research institute; Applied Machine Learning Intern x3 (found on intern-list)
+  ats: web
+  search_hint: Vector Institute careers applied machine learning intern
+- name: AltaML
+  tier: 2
+  city: Edmonton/Toronto
+  why: Applied ML consultancy; ML developer interns
+  ats: lever
+  token: altaml
+- name: Amazon
+  tier: 2
+  city: Toronto/Vancouver
+  why: Applied Science and ML systems SDE interns
+  ats: web
+  url: https://www.amazon.jobs/en/search?base_query=intern&loc_query=Canada
+  aliases:
+  - Amazon Web Services (AWS)
+  - AWS
+  - Amazon.com
+- name: AMD
+  tier: 2
+  city: Markham
+  why: ML/AI Intern/Co-op
+  ats: web
+  url: https://careers.amd.com/careers-home/jobs?keywords=intern&location=Canada
+- name: Apera AI
+  tier: 2
+  city: Vancouver
+  why: ML Applied Scientist co-op (computer vision)
+  ats: greenhouse
+  token: aperaaiinc
+- name: Assent
+  tier: 2
+  city: Ottawa
+  why: AI Research Intern last year; Ottawa
+  ats: smartrecruiters
+  token: Assent
+- name: Autodesk
+  tier: 2
+  city: Toronto/Montreal
+  why: AI Developer intern, Autodesk Research foundation models; PhD a plus
+  ats: workday
+  token: autodesk
+  host: autodesk.wd1.myworkdayjobs.com
+  site: uni
+  queries:
+  - intern
+  - co-op
+  - student
+- name: BCI (BC Investment)
+  tier: 2
+  city: Victoria
+  why: AI and Automation Engineer co-op (Winter & Summer 2027) live
+  ats: workday
+  token: bci
+  host: bci.wd10.myworkdayjobs.com
+  site: BCI_Careers
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - BCI
+  - British Columbia Investment
+  - British Columbia Investment Management Corporation
+- name: Block
+  tier: 2
+  city: Toronto
+  why: Applied Research Intern co-op
+  ats: web
+  url: https://block.xyz/careers
+- name: CGI
+  tier: 2
+  city: Montreal/Ottawa
+  why: AI Development and Analysis co-op, Winter 2027, 8 months; large Ottawa office
+  ats: web
+  search_hint: CGI careers Canada co-op AI
+- name: CIBC
+  tier: 2
+  city: Toronto
+  why: AI Scientist / AI analytics co-ops; some need French
+  ats: workday
+  token: cibc
+  host: cibc.wd3.myworkdayjobs.com
+  site: campus
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Canadian Imperial Bank of Commerce
+- name: Coveo
+  tier: 2
+  city: Montreal/Quebec City
+  why: AI search/RAG company; ML interns 3 times a year; French often required
+  ats: web
+  url: https://www.coveo.com/en/company/careers/internships
+- name: DRW
+  tier: 2
+  city: Montreal
+  why: AI/ML Research Intern (grad window Dec 2027 to Jun 2028); quant firm, very competitive
+  ats: greenhouse
+  token: drweng
+- name: Fairstone Financial
+  tier: 2
+  city: Toronto
+  why: AI Engineer co-op student
+  ats: workday
+  token: fairstone
+  host: fairstone.wd3.myworkdayjobs.com
+  site: FairstoneCareers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: FGF Brands
+  tier: 2
+  city: Toronto
+  why: AI Engineer Cerebro co-op, Winter 2027
+  ats: web
+  search_hint: FGF Brands careers AI Engineer Cerebro co-op
+- name: Foresters Financial
+  tier: 2
+  city: Toronto
+  why: Software Engineer Co-op, AI
+  ats: workday
+  token: foresters
+  host: foresters.wd3.myworkdayjobs.com
+  site: ForestersFinancialCareers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Fullscript
+  tier: 2
+  city: Ottawa
+  why: Ottawa scale-up; watch for co-ops
+  ats: lever
+  token: fullscript
+- name: Genesys
+  tier: 2
+  city: Toronto
+  why: Predictions data & decision science intern plus 7 SWE interns
+  ats: web
+  search_hint: Genesys careers Toronto intern
+- name: GeoComply
+  tier: 2
+  city: Vancouver
+  why: ML Engineer Intern
+  ats: lever
+  token: geocomply-2
+- name: Geotab
+  tier: 2
+  city: Oakville
+  why: Large intern program (26 live intern roles); some ML/data roles
+  ats: greenhouse
+  token: internshiplist2000
+- name: Global Relay
+  tier: 2
+  city: Vancouver
+  why: AI Developer Co-op
+  ats: web
+  url: https://www.globalrelay.com/careers/
+- name: Google
+  tier: 2
+  city: Toronto/Waterloo/Montreal
+  why: Student Researcher (BS/MS)
+  ats: web
+  url: https://www.google.com/about/careers/applications/jobs/results/?location=Canada&target_level=INTERN_AND_APPRENTICE
+  aliases:
+  - Google DeepMind
+- name: IG Wealth Management
+  tier: 2
+  city: Winnipeg/Toronto
+  why: Winter 2027 AI Internship Program
+  ats: web
+  search_hint: IG Wealth Management careers AI internship
+  aliases:
+  - IG Gestion de patrimoine
+  - IGM Financial
+- name: Instacart
+  tier: 2
+  city: Toronto
+  why: ML-heavy product; occasional Canada interns
+  ats: greenhouse
+  token: instacart
+- name: Later
+  tier: 2
+  city: Vancouver
+  why: AI Automation Co-op live
+  ats: greenhouse
+  token: later
+- name: League
+  tier: 2
+  city: Toronto
+  why: AI Engineer Co-op
+  ats: greenhouse
+  token: leagueinc
+- name: Loblaw Companies
+  tier: 2
+  city: Toronto/Brampton
+  why: AI Engineering Co-op postings
+  ats: workday
+  token: myview
+  host: myview.wd3.myworkdayjobs.com
+  site: paradox_careers
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Loblaw
+- name: Microsoft
+  tier: 2
+  city: Vancouver/Toronto
+  why: Intern programs
+  ats: web
+  url: https://apply.careers.microsoft.com/careers?query=intern&location=Canada
+- name: MindBridge
+  tier: 2
+  city: Ottawa
+  why: Ottawa AI company (financial anomaly detection)
+  ats: web
+  url: https://www.mindbridge.ai/careers/
+- name: Nokia
+  tier: 2
+  city: Ottawa/Kanata
+  why: Software/AI development co-ops
+  ats: web
+  url: https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions?keyword=co-op&location=Canada
+- name: Nuclear Promise X
+  tier: 2
+  city: Toronto
+  why: AI Developer Co-op
+  ats: ashby
+  token: NPX
+- name: OMERS
+  tier: 2
+  city: Toronto
+  why: AI/ML Engineer Student (8 months) postings
+  ats: workday
+  token: omers
+  host: omers.wd3.myworkdayjobs.com
+  site: omers_external
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Peripheral
+  tier: 2
+  city: Toronto
+  why: ML Engineering Intern, 3D reconstruction (Spring 2027)
+  ats: web
+  search_hint: Peripheral Toronto ML engineering intern reconstruction
+- name: Rockwell Automation
+  tier: 2
+  city: Waterloo
+  why: OTTO robotics research co-ops (physical AI)
+  ats: workday
+  token: rockwellautomation
+  host: rockwellautomation.wd1.myworkdayjobs.com
+  site: External-Rockwell-Automation-Early-Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Rodan Energy Solutions
+  tier: 2
+  city: Mississauga
+  why: 3 AI/data co-ops for Winter 2027
+  ats: web
+  url: https://rodanenergysolutionsinc.applytojob.com/apply
+  aliases:
+  - Rodan Energy Solutions Inc.
+- name: Samsung AI Centre Toronto
+  tier: 2
+  city: Toronto
+  why: NLP/vision research lab; board empty now, watch for interns
+  ats: greenhouse
+  token: saictoronto
+  aliases:
+  - Samsung Research America
+  - Samsung AI Center Toronto
+- name: Sanctuary AI
+  tier: 2
+  city: Vancouver
+  why: Humanoid robotics; ML research intern (RL/imitation learning)
+  ats: web
+  search_hint: Sanctuary AI careers machine learning intern
+- name: Solink
+  tier: 2
+  city: Ottawa
+  why: Software Engineer Co-op AI/ML; Ottawa AI company
+  ats: ashby
+  token: solink
+- name: StackAdapt
+  tier: 2
+  city: Toronto/remote Canada
+  why: ML Engineer Intern Winter 2027 posted this year
+  ats: greenhouse
+  token: stackadapt
+- name: Sun Life
+  tier: 2
+  city: Toronto/Waterloo
+  why: Student Gen AI Engineer postings
+  ats: workday
+  token: sunlife
+  host: sunlife.wd3.myworkdayjobs.com
+  site: Campus
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Sun Life Financial
+- name: Trane Technologies
+  tier: 2
+  city: Montreal
+  why: BrainBox AI intern roles
+  ats: web
+  url: https://careers.tranetechnologies.com/global/en/search-results?keywords=brainbox%20intern
+- name: Ubisoft
+  tier: 2
+  city: Montreal/Toronto
+  why: La Forge AI research; French often required
+  ats: smartrecruiters
+  token: Ubisoft2
+- name: Waabi
+  tier: 2
+  city: Toronto
+  why: Top AI lab (autonomy); research internship/co-op mostly targets PhD students
+  ats: lever
+  token: waabi
+- name: Wealthsimple
+  tier: 2
+  city: Toronto
+  why: Occasional engineering interns
+  ats: ashby
+  token: wealthsimple
+- name: Xsolla
+  tier: 2
+  city: Canada
+  why: AI Engineer Intern
+  ats: lever
+  token: xsolla
+- name: 1Password
+  tier: 3
+  city: Toronto/remote Canada
+  why: Security; interns occasionally
+  ats: ashby
+  token: 1password
+- name: Anthropic
+  tier: 3
+  city: US/Canada
+  why: Fellows programs; very competitive
+  ats: greenhouse
+  token: anthropic
+- name: AstraZeneca
+  tier: 3
+  city: Toronto
+  why: ML research intern
+  ats: workday
+  token: astrazeneca
+  host: astrazeneca.wd3.myworkdayjobs.com
+  site: Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Blackberry
+  tier: 3
+  city: Ottawa/Waterloo
+  why: Student roles; QNX in Kanata
+  ats: workday
+  token: bb
+  host: bb.wd3.myworkdayjobs.com
+  site: Student
+  queries:
+  - intern
+  - co-op
+  - student
+- name: CAE
+  tier: 3
+  city: Montreal
+  why: AI intern; mostly French/Quebec
+  ats: workday
+  token: cae
+  host: cae.wd3.myworkdayjobs.com
+  site: career
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Capital One
+  tier: 3
+  city: Toronto
+  why: Data/analytics interns
+  ats: workday
+  token: capitalone
+  host: capitalone.wd12.myworkdayjobs.com
+  site: Capital_One
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Celestica
+  tier: 3
+  city: Toronto
+  why: Operations technology & AI solutions intern
+  ats: web
+  search_hint: Celestica careers student intern AI
+- name: Cerebras
+  tier: 3
+  city: Toronto
+  why: AI hardware/inference; AI engineering interns
+  ats: web
+  url: https://www.cerebras.ai/careers
+- name: Databricks
+  tier: 3
+  city: Vancouver/US
+  why: Data+AI platform; interns mostly US
+  ats: greenhouse
+  token: databricks
+- name: Definity Financial
+  tier: 3
+  city: Toronto
+  why: AI & Cloud platforms co-op
+  ats: web
+  url: https://hdks.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions?keyword=co-op
+- name: Dialpad
+  tier: 3
+  city: Vancouver/Kitchener
+  why: AI voice; interns occasionally
+  ats: greenhouse
+  token: dialpad
+- name: Faire
+  tier: 3
+  city: Toronto
+  why: Engineering interns occasionally
+  ats: greenhouse
+  token: faire
+- name: FluidAI Medical
+  tier: 3
+  city: Kitchener
+  why: Data and AI engineering co-op
+  ats: web
+  url: https://ats.rippling.com/fluidai-medical-careers/jobs
+  aliases:
+  - NERv Technology Inc. D.B.A. FluidAI Medical
+  - FluidAI
+- name: Fujitsu
+  tier: 3
+  city: Toronto
+  why: Intern Researcher
+  ats: web
+  search_hint: Fujitsu Toronto intern researcher
+- name: General Motors
+  tier: 3
+  city: Markham/Oshawa
+  why: Advanced AI & Simulation co-op
+  ats: workday
+  token: generalmotors
+  host: generalmotors.wd5.myworkdayjobs.com
+  site: Careers_GM
+  queries:
+  - intern
+  - co-op
+  - student
+- name: GIRO
+  tier: 3
+  city: Montreal
+  why: Software development and AI co-op, Winter 2027; French likely
+  ats: web
+  search_hint: GIRO careers stage intelligence artificielle
+- name: Glean
+  tier: 3
+  city: US
+  why: Enterprise RAG search; US
+  ats: greenhouse
+  token: gleanwork
+- name: Harris Computer
+  tier: 3
+  city: Ottawa
+  why: Corporate AI Foundation intern
+  ats: workday
+  token: harriscomputer
+  host: harriscomputer.wd3.myworkdayjobs.com
+  site: '1'
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Harvey
+  tier: 3
+  city: Toronto/US
+  why: Legal LLM company; Toronto office, few interns
+  ats: ashby
+  token: harvey
+- name: Hopper
+  tier: 3
+  city: Montreal
+  why: ML-heavy travel app
+  ats: ashby
+  token: hopper
+- name: Hugging Face
+  tier: 3
+  city: Remote
+  why: Remote roles occasionally
+  ats: workable
+  token: huggingface
+- name: iA Financial Group
+  tier: 3
+  city: Quebec City
+  why: AI, automation intern; French likely
+  ats: web
+  search_hint: iA Financial Group stage intelligence artificielle
+  aliases:
+  - iA Financial Group (Industrial Alliance)
+- name: IMCO
+  tier: 3
+  city: Toronto
+  why: AI ops intern
+  ats: workday
+  token: imcoinvest
+  host: imcoinvest.wd3.myworkdayjobs.com
+  site: IMCO
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Investment Management Corporation of Ontario
+- name: Interac
+  tier: 3
+  city: Toronto
+  why: AI product delivery intern
+  ats: workday
+  token: interac
+  host: interac.wd3.myworkdayjobs.com
+  site: Interac
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Jobber
+  tier: 3
+  city: Edmonton/Toronto
+  why: SaaS; co-ops
+  ats: ashby
+  token: jobber
+- name: Karbon Digital
+  tier: 3
+  city: Canada
+  why: AI Research Intern
+  ats: web
+  search_hint: Karbon Digital AI Research Intern
+- name: Klue
+  tier: 3
+  city: Vancouver
+  why: AI competitive-intel SaaS
+  ats: ashby
+  token: klue
+- name: LangChain
+  tier: 3
+  city: US
+  why: LangGraph maker; no interns now
+  ats: ashby
+  token: langchain
+- name: Lightspeed
+  tier: 3
+  city: Montreal
+  why: Engineering interns occasionally
+  ats: ashby
+  token: lightspeedhq
+- name: Magna International
+  tier: 3
+  city: Aurora
+  why: AI engineering co-op
+  ats: workday
+  token: magna
+  host: magna.wd3.myworkdayjobs.com
+  site: Magna
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Magna
+- name: Magnet Forensics
+  tier: 3
+  city: Waterloo/Ottawa
+  why: Forensics software; co-ops
+  ats: lever
+  token: magnetforensics
+- name: McKesson
+  tier: 3
+  city: Canada
+  why: DS & MLE intern
+  ats: workday
+  token: mckesson
+  host: mckesson.wd3.myworkdayjobs.com
+  site: External_Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Mercury
+  tier: 3
+  city: Toronto
+  why: SWE Intern, AI enablement
+  ats: greenhouse
+  token: mercury
+- name: Motorola
+  tier: 3
+  city: Canada
+  why: Software Developer AI Co-op
+  ats: workday
+  token: motorolasolutions
+  host: motorolasolutions.wd5.myworkdayjobs.com
+  site: Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Nasdaq
+  tier: 3
+  city: Canada
+  why: Mitacs research intern
+  ats: workday
+  token: nasdaq
+  host: nasdaq.wd1.myworkdayjobs.com
+  site: Global_External_Site
+  queries:
+  - intern
+  - co-op
+  - student
+- name: NAV CANADA
+  tier: 3
+  city: Ottawa
+  why: Technology Research Analyst co-op; Ottawa
+  ats: web
+  search_hint: NAV CANADA co-op technology research analyst
+- name: Nomic
+  tier: 3
+  city: US/Canada
+  why: Embeddings; small
+  ats: ashby
+  token: nomic
+- name: NVIDIA
+  tier: 3
+  city: Toronto
+  why: Mostly PhD research interns
+  ats: workday
+  token: nvidia
+  host: nvidia.wd5.myworkdayjobs.com
+  site: NVIDIAExternalCareerSite
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - Nvidia
+- name: Observe.AI
+  tier: 3
+  city: Bengaluru/US
+  why: Conversational AI
+  ats: greenhouse
+  token: observeai
+- name: Ontario Health
+  tier: 3
+  city: Toronto
+  why: Research Intern, AI
+  ats: workday
+  token: oh
+  host: oh.wd3.myworkdayjobs.com
+  site: OH
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Perplexity
+  tier: 3
+  city: US
+  why: US internships need US work authorization
+  ats: ashby
+  token: perplexity
+- name: Pinecone
+  tier: 3
+  city: US
+  why: Vector DB you used
+  ats: ashby
+  token: pinecone
+- name: PointClickCare
+  tier: 3
+  city: Mississauga
+  why: Health SaaS; co-ops
+  ats: lever
+  token: pointclickcare
+- name: PSP Investments
+  tier: 3
+  city: Montreal
+  why: AI Solutions Intern
+  ats: workday
+  token: investpsp
+  host: investpsp.wd3.myworkdayjobs.com
+  site: psp_careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: PwC
+  tier: 3
+  city: Toronto
+  why: Cloud, Data and AI intern
+  ats: workday
+  token: pwc
+  host: pwc.wd3.myworkdayjobs.com
+  site: Global_Campus_Careers
+  queries:
+  - intern
+  - co-op
+  - student
+  aliases:
+  - PricewaterhouseCoopers (PwC)
+  - PricewaterhouseCoopers
+- name: Qualcomm
+  tier: 3
+  city: Markham
+  why: ML compiler/low-power AI internships
+  ats: web
+  url: https://qualcomm.eightfold.ai/careers?query=intern&location=Canada
+- name: Replit
+  tier: 3
+  city: US
+  why: AI coding
+  ats: ashby
+  token: replit
+- name: Revvity
+  tier: 3
+  city: Canada
+  why: Full-stack AI developer intern postings
+  ats: workday
+  token: revvity
+  host: revvity.wd103.myworkdayjobs.com
+  site: External
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Roche
+  tier: 3
+  city: Mississauga
+  why: DS/MLE intern
+  ats: workday
+  token: roche
+  host: roche.wd3.myworkdayjobs.com
+  site: roche-ext
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Sarvam AI
+  tier: 3
+  city: Bengaluru
+  why: Indian LLM company; 2 intern roles
+  ats: ashby
+  token: sarvam
+- name: Scale AI
+  tier: 3
+  city: US/Toronto
+  why: US internships; some Toronto roles
+  ats: greenhouse
+  token: scaleai
+- name: Sierra
+  tier: 3
+  city: Toronto/US
+  why: AI agents; Toronto office
+  ats: ashby
+  token: sierra
+- name: Tenstorrent
+  tier: 3
+  city: Toronto
+  why: AI compiler/hardware; may need US export approval
+  ats: greenhouse
+  token: tenstorrentuniversity
+- name: The Home Depot
+  tier: 3
+  city: Toronto
+  why: AI/ML Developer Intern postings in Canada
+  ats: workday
+  token: homedepot
+  host: homedepot.wd5.myworkdayjobs.com
+  site: CareerDepotCanada
+  queries:
+  - intern
+  - co-op
+  - student
+- name: TMX Group
+  tier: 3
+  city: Toronto
+  why: AI Intern
+  ats: workday
+  token: tmx
+  host: tmx.wd3.myworkdayjobs.com
+  site: TMX_Careers
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Together AI
+  tier: 3
+  city: US
+  why: 12 intern roles, US
+  ats: greenhouse
+  token: togetherai
+- name: Trench Group
+  tier: 3
+  city: Toronto (Scarborough)
+  why: AI & ML Intern, applied sciences
+  ats: web
+  search_hint: Trench Group AI ML intern Scarborough
+- name: Trend Micro
+  tier: 3
+  city: Ottawa
+  why: Research interns (security)
+  ats: workday
+  token: trendmicro
+  host: trendmicro.wd3.myworkdayjobs.com
+  site: External
+  queries:
+  - intern
+  - co-op
+  - student
+- name: Visier Solutions
+  tier: 3
+  city: Vancouver
+  why: People analytics; interns
+  ats: greenhouse
+  token: visiersolutionsinc
+- name: Weaviate
+  tier: 3
+  city: Remote
+  why: Vector DB; remote intern posted
+  ats: ashby
+  token: weaviate
+- name: Writer
+  tier: 3
+  city: US
+  why: Enterprise LLM
+  ats: ashby
+  token: writer

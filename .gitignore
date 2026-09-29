@@ -1,0 +1,20 @@
+# Personal profile: facts about the candidate, preferences, scoring rubric, writing style
+profile/
+
+# Job data and generated applications
+data/
+output/
+
+# Personal notes
+README.txt
+
+# Environment and system files
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.bak
+*.bak-*
+.env
+.env.*
+.claude/settings.local.json
